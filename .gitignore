@@ -1,0 +1,18 @@
+// pdf files
+*.pdf
+
+// executables
+*.out
+
+// object files
+*.o
+
+// libraries
+*.a
+*.so
+
+// vs code settings
+.vscode
+
+// tester(s)
+libftTester/
