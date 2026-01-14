@@ -6,20 +6,20 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 17:48:49 by rfoo              #+#    #+#             */
-/*   Updated: 2026/01/14 17:49:24 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/01/14 19:05:01 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putupperhex_fd(unsigned int n, int fd)
+void	ft_putupperhex_fd(unsigned long n, int fd)
 {
 	char	*hex;
-	char	buffer[9];
+	char	buffer[17];
 	int		i;
 
 	hex = "0123456789ABCDEF";
-	i = 8;
+	i = 16;
 	buffer[i] = '\0';
 	if (n == 0)
 	{
