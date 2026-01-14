@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_ptr.c                                       :+:      :+:    :+:   */
+/*   ft_putptr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/18 19:08:17 by rfoo              #+#    #+#             */
-/*   Updated: 2026/01/14 19:08:24 by rfoo             ###   ########.fr       */
+/*   Created: 2026/01/14 17:51:06 by rfoo              #+#    #+#             */
+/*   Updated: 2026/01/14 18:46:51 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void handle_ptr(void *ptr)
+void	ft_putptr_fd(void *ptr, int fd)
 {
-	ft_putptr_fd(ptr, 1);
+	if (ptr == NULL)
+	{
+		ft_putstr_fd("(nil)", fd);
+		return;
+	}
+	ft_putstr_fd("0x", fd);
+	ft_putlowerhex_fd((unsigned long)ptr, fd);
 }
