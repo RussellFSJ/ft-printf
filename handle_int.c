@@ -3,16 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   handle_int.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
+/*   By: russ1337 <russ1337@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 19:03:39 by rfoo              #+#    #+#             */
-/*   Updated: 2026/01/14 19:22:41 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/01/16 06:41:34 by russ1337         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	handle_int(int n)
+int	handle_int(int n)
 {
-	ft_putnbr_fd(n, 1);
+	long	nbr;
+	int		count;
+
+	nbr = n;
+	count = 0;
+	if (nbr < 0)
+	{
+		count += write(1, '-', 1);
+		nbr = -nbr;
+	}
+	if (nbr >= 10)
+		count += handle_int(nbr / 10);
+	count += handle_char((nbr % 10) + '0');
+	return count;
 }
