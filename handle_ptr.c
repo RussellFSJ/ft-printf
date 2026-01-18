@@ -6,23 +6,20 @@
 /*   By: russ1337 <russ1337@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 19:08:17 by rfoo              #+#    #+#             */
-/*   Updated: 2026/01/16 07:00:39 by russ1337         ###   ########.fr       */
+/*   Updated: 2026/01/19 06:04:52 by russ1337         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	handle_ptr(void *ptr)
+int	handle_ptr(va_list *args)
 {
-	int	bytes;
+	void			*ptr;
+	unsigned long	address;
 
-	bytes = 0;
+	ptr = va_arg(*args, void *);
 	if (ptr == NULL)
-	{
-		bytes += handle_str("(nil)");
-		return (bytes);
-	}
-	bytes += handle_str("0x");
-	bytes += handle_lowerhex((unsigned long) ptr);
-	return (bytes);
+		return (write(1, "(nil)", 5));
+	address = (unsigned long)ptr;
+	return (write(1, "0x", 2) + print_hex(address, 0));
 }
