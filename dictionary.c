@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dictionary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
+/*   By: russ1337 <russ1337@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:34:24 by rfoo              #+#    #+#             */
-/*   Updated: 2026/01/14 20:11:52 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/01/19 02:44:28 by russ1337         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_dict	*dict_init(char *keys)
 	printf_dict->size = ft_strlen(keys);
 	printf_dict->count = 0;
 	printf_dict->entries = ft_calloc(ft_strlen(keys), sizeof(t_entry));
-	if (!entries)
+	if (!printf_dict->entries)
 	{
 		free(printf_dict);
 		return (NULL);
@@ -32,7 +32,7 @@ t_dict	*dict_init(char *keys)
 	return (printf_dict);
 }
 
-static void	dict_set(t_dict *dict, char key, void (*handler)(void*))
+static void	dict_set(t_dict *dict, char key, t_handler handler)
 {
 	int		index;
 	t_entry	entry;

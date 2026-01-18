@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
+/*   By: russ1337 <russ1337@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 19:52:43 by rfoo              #+#    #+#             */
-/*   Updated: 2026/01/14 20:09:53 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/01/19 02:44:04 by russ1337         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-typedef void	(*t_handler)(void *);
+typedef int	(*t_handler)(va_list *args);
 typedef struct entry
 {
 	char		key;
@@ -31,25 +31,19 @@ typedef struct dict
 	t_entry	*entries;
 }			t_dict;
 
-int			ft_printf(const char *format, ...);
 size_t		ft_strlen(const char *s);
 void		*ft_memset(void *s, int c, size_t n);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t nmemb, size_t size);
-void		ft_putchar_fd(char c, int fd);
-void		ft_putstr_fd(char *s, int fd);
-void		ft_putnbr_fd(int n, int fd);
-void		ft_putlowerhex_fd(unsigned long n, int fd);
-void		ft_putupperhex_fd(unsigned long n, int fd);
-void		ft_putptr_fd(void *ptr, int fd);
-void		handle_char(char c);
-void		handle_str(char *s);
-void		handle_int(int n);
-void		handle_ptr(void *ptr);
-void		handle_lowerhex(unsigned long n);
-void		handle_upperhex(unsigned long n);
-void		handle_percent(void);
-t_dict		*dict_init(int dict_size);
+int			handle_char(va_list *args);
+int			handle_str(va_list *args);
+int			handle_int(va_list *args);
+int			handle_ptr(va_list *args);
+int			handle_lowerhex(va_list *args);
+int			handle_upperhex(va_list *args);
+int			handle_percent(void);
+t_dict		*dict_init(char* keys);
 t_handler	dict_get(t_dict *dict, char key);
+int			ft_printf(const char *format, ...);
 
 #endif
