@@ -6,26 +6,31 @@
 /*   By: russ1337 <russ1337@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 19:03:39 by rfoo              #+#    #+#             */
-/*   Updated: 2026/01/16 06:55:01 by russ1337         ###   ########.fr       */
+/*   Updated: 2026/01/19 04:54:26 by russ1337         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	handle_int(int n)
+int	handle_int(va_list *args)
 {
-	long	nbr;
+	int	n;
+
+	n = va_arg(*args, int);
+	return (print_int((long)n));
+}
+static int print_int(long nbr)
+{
 	int		bytes;
 
-	nbr = n;
 	bytes = 0;
 	if (nbr < 0)
 	{
-		bytes += handle_char('-');
+		bytes += write(1, "-", 1);
 		nbr = -nbr;
 	}
 	if (nbr >= 10)
-		bytes += handle_int(nbr / 10);
-	bytes += handle_char((nbr % 10) + '0');
+		bytes += print_int(nbr / 10);
+	bytes += write(1, &(char){(nbr % 10) + '0'}, 1);
 	return (bytes);
 }
