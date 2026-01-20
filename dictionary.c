@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dictionary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: russ1337 <russ1337@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 14:34:24 by rfoo              #+#    #+#             */
-/*   Updated: 2026/01/20 09:45:21 by russ1337         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:14:06 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	add_entries(t_dict *dict);
 t_dict	*dict_init(void)
 {
 	const char	*keys;
-	t_dict	*printf_dict;
+	t_dict		*printf_dict;
 
 	keys = "cspdiuxX%";
 	printf_dict = malloc(sizeof(t_dict));

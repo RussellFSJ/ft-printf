@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: russ1337 <russ1337@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 11:58:48 by rfoo              #+#    #+#             */
-/*   Updated: 2026/01/20 09:50:19 by russ1337         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:13:45 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	ft_printf(const char *s, ...)
 	{
 		if (s[i] == '%')
 		{
-			if (!s[i + 1]) 
+			if (!s[i + 1])
 				return (bytes + write(1, "%", 1));
 			i++;
 			bytes += use_handler(s[i], dict, &args);
 		}
-		else 
+		else
 			bytes += write(1, &s[i], 1);
 		i++;
 	}
@@ -49,5 +49,5 @@ static int	use_handler(char s, t_dict *dict, va_list *args)
 	handler = dict_get(dict, s);
 	if (handler)
 		return (handler(args));
-	return (write(1, "%", 1) + write(1,&s, 1));
+	return (write(1, "%", 1) + write(1, &s, 1));
 }

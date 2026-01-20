@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   handle_int.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: russ1337 <russ1337@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 19:03:39 by rfoo              #+#    #+#             */
-/*   Updated: 2026/01/20 09:51:02 by russ1337         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:11:50 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int print_int(long nbr);
+static int	print_int(long nbr);
 
 int	handle_int(va_list *args)
 {
@@ -21,7 +21,8 @@ int	handle_int(va_list *args)
 	n = va_arg(*args, int);
 	return (print_int((long)n));
 }
-static int print_int(long nbr)
+
+static int	print_int(long nbr)
 {
 	int		bytes;
 
