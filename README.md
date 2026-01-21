@@ -88,6 +88,8 @@ int main(void)
     ft_printf("Hex uppercase: %X\n", 255);
     ft_printf("Pointer: %p\n", (void *)&main);
     ft_printf("Percent sign: %%\n");
+    ft_printf("Trailing percent sign: %\n", "percent sign");
+    ft_printf("Unknown specifier: %b\n", "unknown specifier");
 
     return (0);
 }
