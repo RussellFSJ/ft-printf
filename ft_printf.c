@@ -6,13 +6,13 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 11:58:48 by rfoo              #+#    #+#             */
-/*   Updated: 2026/01/21 21:42:20 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/01/21 21:44:25 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	process_string(const char *s, t_dict *dict, va_list *args);
+static int	process_s(const char *s, t_dict *dict, va_list *args);
 static int	use_handler(char s, t_dict *dict, va_list *args);
 
 int	ft_printf(const char *s, ...)
@@ -26,13 +26,13 @@ int	ft_printf(const char *s, ...)
 	va_start(args, s);
 	bytes = 0;
 	dict = dict_init();
-	bytes = process_string(s, dict, &args);
+	bytes = process_s(s, dict, &args);
 	va_end(args);
 	dict_free(dict);
 	return (bytes);
 }
 
-static int	process_string(const char *s, t_dict *dict, va_list *args)
+static int	process_s(const char *s, t_dict *dict, va_list *args)
 {
 	int	i;
 	int	bytes;
