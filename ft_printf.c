@@ -6,41 +6,52 @@
 /*   By: rfoo <rfoo@student.42singapore.sg>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 11:58:48 by rfoo              #+#    #+#             */
-/*   Updated: 2026/01/20 16:48:05 by rfoo             ###   ########.fr       */
+/*   Updated: 2026/01/21 21:42:20 by rfoo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static int	process_string(const char *s, t_dict *dict, va_list *args);
 static int	use_handler(char s, t_dict *dict, va_list *args);
-static int	handle_trailing_percent(t_dict *dict, va_list *args, int bytes);
 
 int	ft_printf(const char *s, ...)
 {
 	va_list		args;
-	int			i;
 	int			bytes;
 	t_dict		*dict;
 
+	if (!s)
+		return (-1);
 	va_start(args, s);
-	i = 0;
 	bytes = 0;
 	dict = dict_init();
+	bytes = process_string(s, dict, &args);
+	va_end(args);
+	dict_free(dict);
+	return (bytes);
+}
+
+static int	process_string(const char *s, t_dict *dict, va_list *args)
+{
+	int	i;
+	int	bytes;
+
+	i = 0;
+	bytes = 0;
 	while (s[i])
 	{
 		if (s[i] == '%')
 		{
 			if (!s[i + 1])
-				return (handle_trailing_percent(dict, &args, bytes));
+				return (bytes + write(1, "%", 1));
 			i++;
-			bytes += use_handler(s[i], dict, &args);
+			bytes += use_handler(s[i], dict, args);
 		}
 		else
 			bytes += write(1, &s[i], 1);
 		i++;
 	}
-	va_end(args);
-	dict_free(dict);
 	return (bytes);
 }
 
@@ -54,9 +65,3 @@ static int	use_handler(char s, t_dict *dict, va_list *args)
 	return (write(1, "%", 1) + write(1, &s, 1));
 }
 
-static int	handle_trailing_percent(t_dict *dict, va_list *args, int bytes)
-{
-	va_end(*args);
-	dict_free(dict);
-	return (bytes + write(1, "%", 1));
-}
