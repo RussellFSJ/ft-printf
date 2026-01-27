@@ -82,17 +82,19 @@ We first implement a main.c function to test `ft_printf`.
 
 int main(void)
 {
-	printf("%d\n", ft_printf(NULL));
 	printf("%d\n", printf(NULL));
+	printf("%d\n", ft_printf(NULL));
 
-	printf("%d\n", ft_printf(0));
 	printf("%d\n", printf(0));
+	printf("%d\n", ft_printf(0));
 
 	ft_printf("Character: %c\n", 'A');
 	ft_printf("Hello %s!\n", "world");
 	ft_printf("Pointer: %p\n", (void *)&main);
-	ft_printf("Decimal: %d\n", 42);
-	ft_printf("Integer: %i\n", 42);
+	ft_printf("Decimal: %d\n", INT_MIN);
+	ft_printf("Integer: %i\n", INT_MIN);
+	ft_printf("Decimal: %d\n", 0);
+	ft_printf("Integer: %i\n", 0);
 	ft_printf("Unsigned: %u\n", 3000000000u);
 	ft_printf("Hex lowercase: %x\n", 255);
 	ft_printf("Hex uppercase: %X\n", 255);
@@ -103,7 +105,6 @@ int main(void)
 	return (0);
 }
 ```
-
 Then run the following command:
 ```
 cc -Wall -Wextra -Werror -o my_program main.c libftprintf.a
